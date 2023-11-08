@@ -23,7 +23,7 @@ function makeBoard() {
   for (let y = 0; y < HEIGHT; y++) {
     const row = [];
     for (let x = 0; x < WIDTH; x++) {
-      debugger;
+     //debugger;
       row.push(null);
     }
     board.push(row);
@@ -76,7 +76,12 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  for(let y = HEIGHT-1; y >= 0; y--){
+    if(!board[y][x]){
+      return y;
+    }
+  }
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
