@@ -19,8 +19,14 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
+  for(let y = 0; y < HEIGHT; y++){
+    const row = [];
+    for(let x = 0; x < WIDTH; x++){
+      row.push(null);
+    }
+    board.push(row);
+  }
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -35,6 +41,8 @@ function makeHtmlBoard() {
   // TODO: add comment for this code
   for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
+
+    //this sets up coordinates for the board
     headCell.setAttribute("id", `top-${x}`);
     headCell.addEventListener("click", handleClick);
     top.append(headCell);
