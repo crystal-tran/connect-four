@@ -159,7 +159,9 @@ function checkForWin() {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  alert(msg);
+  setTimeout(() => {
+    alert(msg);
+  }, 0);
 }
 
 /** handleClick: handle click of column top to play piece */
