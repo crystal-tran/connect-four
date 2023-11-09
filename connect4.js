@@ -19,7 +19,7 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  // set "board" to empty HEIGHT x WIDTH matrix array
   for (let y = 0; y < HEIGHT; y++) {
     const row = [];
     for (let x = 0; x < WIDTH; x++) {
@@ -108,16 +108,13 @@ function checkForWin() {
   // Check four cells to see if they're all legal & all color of current
   // player
   function _win(cells) {
-    console.log("calling _win:", cells);
-    return cells.every(([y,x]) =>
+    return cells.every(([y, x]) =>
       y >= 0 &&
       y < HEIGHT &&
       x >= 0 &&
       x < WIDTH &&
       board[y][x] === currPlayer
     );
-
-
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
@@ -125,14 +122,14 @@ function checkForWin() {
   // ways to win: horizontal, vertical, diagonalDR, diagonalDL
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
-      // TODO: assign values to the below variables for each of the ways to win
+      // assign values to the below variables for each of the ways to win
       // horizontal has been assigned for you
       // each should be an array of 4 cell coordinates:
       // [ [y, x], [y, x], [y, x], [y, x] ]
 
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      let diagDL= [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+      let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
       let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
 
       // find winner (only checking each win-possibility as needed)
@@ -164,8 +161,10 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   // TODO: add line to update global `board` variable with new piece
+  console.log("handleClick logs: ", board);
+  console.log("handleClick logs: ", currPlayer);
+  board[y][x] === currPlayer;
   placeInTable(y, x);
-
   // check for win
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
