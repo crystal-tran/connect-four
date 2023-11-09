@@ -106,9 +106,16 @@ function checkForWin() {
    * currPlayer
    */
   function _win(cells) {
-
+    return cells.every(([y,x]) => {
+      y >= 0 &&
+      y < HEIGHT &&
+      x >= 0 &&
+      x < WIDTH &&
+      board[y][x] === currPlayer
+    })
     // TODO: Check four cells to see if they're all legal & all color of current
     // player
+
 
   }
 
