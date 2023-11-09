@@ -160,10 +160,10 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update global `board` variable with new piece
+  // add line to update global `board` variable with new piece
   console.log("handleClick logs: ", board);
   console.log("handleClick logs: ", currPlayer);
-  board[y][x] === currPlayer;
+  board[y][x] = currPlayer;
   placeInTable(y, x);
   // check for win
   if (checkForWin()) {
