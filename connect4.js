@@ -77,7 +77,7 @@ function makeHtmlBoard() {
 function findSpotForCol(x) {
   // write the real version of this, rather than always returning 5
   for (let y = HEIGHT - 1; y >= 0; y--) {
-    if (!board[y][x]) {
+    if (board[y][x] !== null) {
       return y;
     }
   }
@@ -160,9 +160,6 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // add line to update global `board` variable with new piece
-  // console.log("handleClick logs: ", board);
-  // console.log("handleClick logs: ", currPlayer);
   board[y][x] = currPlayer;
   placeInTable(y, x);
   // check for win
@@ -171,13 +168,11 @@ function handleClick(evt) {
   }
 
   // check for tie: if top row is filled, board is filled
-  // check if all cells in board are filled; if so, call endGame
-  if (board[0].every((cell) => cell !== null)){
+  if (board[0].every((cell) => cell !== null)) {
     return endGame("Tied");
   }
 
   // switch players
-  //switch currPlayer 1 <-> 2
   currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
