@@ -109,19 +109,11 @@ function checkForWin() {
   function _win(cells) {
     // Refactor for clarity
 
-    // TODO: add a  check to determine if cell is legal
     // TODO: add a check if 'y' and 'x' are within the valid bounds of board
-    // FIXME: Tests fail
-    function isCellLegal(cell) {
-      const [y, x] = cell;
-      const isYWithinBounds = y >= 0 && y < HEIGHT;
-      const isXWithinBounds = x >= 0 && x < WIDTH;
-      return isYWithinBounds && isXWithinBounds;
-    }
+    // TODO: add a check to see if the cell is owned by the current player
+    // TODO: add a check if all cells in combination are valid and owned by
+    // current player
 
-    const isWinningCombination = cells.every(isCellLegal);
-
-    return isWinningCombination;
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
