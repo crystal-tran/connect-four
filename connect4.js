@@ -75,9 +75,9 @@ function makeHtmlBoard() {
  *    (return null if filled) */
 
 function findSpotForCol(x) {
-  // write the real version of this, rather than always returning 5
+  // FIXME: tests are failing
   for (let y = HEIGHT - 1; y >= 0; y--) {
-    if (board[y][x] !== null) {
+    if (board[y][x] === null) {
       return y;
     }
   }
@@ -108,13 +108,21 @@ function checkForWin() {
   // Check four cells to see if they're all legal & all color of current
   // player
   function _win(cells) {
-    return cells.every(([y, x]) =>
-      y >= 0 &&
-      y < HEIGHT &&
-      x >= 0 &&
-      x < WIDTH &&
-      board[y][x] === currPlayer
-    );
+    // Refactor for clarity
+
+    // TODO: add a  check to determine if cell is legal
+    // TODO: add a check if 'y' and 'x' are within the valid bounds of board
+    // FIXME: Tests fail
+    function isCellLegal(cell) {
+      const [y, x] = cell;
+      const isYWithinBounds = y >= 0 && y < HEIGHT;
+      const isXWithinBounds = x >= 0 && x < WIDTH;
+      return isYWithinBounds && isXWithinBounds;
+    }
+
+    const isWinningCombination = cells.every(isCellLegal);
+
+    return isWinningCombination;
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
