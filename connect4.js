@@ -120,7 +120,7 @@ function checkForWin() {
         return board[y][x] === currPlayer;
       }
       // Handle the case when 'y' or 'x' is out of bounds
-      return false; // You can return false or handle it differently based on your logic
+      return false;
     }
 
     // Check if all cells in the combination are valid and owned by the current player
