@@ -161,8 +161,8 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   // add line to update global `board` variable with new piece
-  console.log("handleClick logs: ", board);
-  console.log("handleClick logs: ", currPlayer);
+  // console.log("handleClick logs: ", board);
+  // console.log("handleClick logs: ", currPlayer);
   board[y][x] = currPlayer;
   placeInTable(y, x);
   // check for win
@@ -171,10 +171,14 @@ function handleClick(evt) {
   }
 
   // check for tie: if top row is filled, board is filled
-  // TODO: check if all cells in board are filled; if so, call endGame
+  // check if all cells in board are filled; if so, call endGame
+  if (board[0].every((cell) => cell !== null)){
+    return endGame("Tied");
+  }
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+  //switch currPlayer 1 <-> 2
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** Start game. */
