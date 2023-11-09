@@ -104,26 +104,29 @@ function checkForWin() {
    * returns true if all are legal coordinates for a cell & all cells match
    * currPlayer
    */
-  // Check four cells to see if they're all legal & all color of current
-  // player
+
   function _win(cells) {
 
+    // Helper function to check if a cell is within the valid bounds of the board
     function isCellWithinBounds(y, x) {
-      // Check if 'y' and 'x' are within the valid bounds of board
       const isYWithinBounds = y >= 0 && y < HEIGHT;
       const isXWithinBounds = x >= 0 && x < WIDTH;
-
       return isYWithinBounds && isXWithinBounds;
     }
-    // Check to see if the cell is owned by the current player
+
+    // Helper function to check if a cell is owned by the current player
     function isCellOwnedByCurrentPlayer(y, x) {
-      return board[y][x] === currPlayer;
+      if (isCellWithinBounds(y, x)) {
+        return board[y][x] === currPlayer;
+      }
+      // Handle the case when 'y' or 'x' is out of bounds
+      return false; // You can return false or handle it differently based on your logic
     }
 
-    // Check if all cells in combination are valid and owned by current player
+    // Check if all cells in the combination are valid and owned by the current player
     const isValidCombination = cells.every(cell => {
       const [y, x] = cell;
-      return isCellOwnedByCurrentPlayer(y, x) && isCellWithinBounds(y, x);
+      return isCellWithinBounds(y, x) && isCellOwnedByCurrentPlayer(y, x);
     });
 
     return isValidCombination;
